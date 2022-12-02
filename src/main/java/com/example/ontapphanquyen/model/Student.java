@@ -1,11 +1,8 @@
 package com.example.ontapphanquyen.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class Student implements Comparable<Student> {
+public class Student   {
     private int id;
     private String name;
     private int age;
@@ -17,12 +14,18 @@ public class Student implements Comparable<Student> {
         studentList.add(new Student(2,"QA2",29,8.44));
         studentList.add(new Student(3,"QA3",20,7.84));
         studentList.add(new Student(4,"QA4",21,7.03));
-         Collections.sort(studentList);
+         Collections.sort(studentList, new Comparator<Student>() {
+             @Override
+             public int compare(Student o1, Student o2) {
+                 return o1.getAge()-o2.getAge();
+             }
+         });
         for (int i = 0; i < studentList.size(); i++) {
             System.out.println(studentList.get(i));
 
         }
     }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -39,11 +42,12 @@ public class Student implements Comparable<Student> {
         this.age = age;
         this.GPA = GPA;
     }
-
-    @Override
-    public int compareTo(Student student) {
-        return this.getAge()-student.getAge();
-    }
+//    @Override
+//    public  int compare()
+//    @Override
+//    public int compareTo(Student student) {
+//        return student.getAge()-this.getAge();
+//    }
 
     public int getId() {
         return id;
